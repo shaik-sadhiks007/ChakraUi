@@ -11,10 +11,10 @@ export const SurveyCard = ({date,time}) => {
                 overflow="hidden"
                 justifyContent='center'
             >
-                <Text fontSize="md" fontWeight="bold" color='black'>
-                    {date}
+                <Text fontSize="sm"  color='black'>
+                    <b>{date}</b>
                 </Text>
-                <Text fontSize="md" fontWeight="bold" color='black'>
+                <Text fontSize="sm"  color='black'>
                     {time}
                 </Text>
             </VStack>

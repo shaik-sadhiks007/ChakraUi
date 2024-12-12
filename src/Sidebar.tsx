@@ -139,14 +139,13 @@ const Sidebar = () => {
         </Box>
         <Grid
           templateColumns={{
-            base: "1fr",        // Single column on small devices
-            md: "repeat(12, 1fr)", // Adjust to 8 columns on medium devices
-            lg: "repeat(12, 1fr)" // Full 12-column grid on large devices
+            base: "1fr",        
+            md: "repeat(12, 1fr)",
+            lg: "repeat(12, 1fr)" 
           }}
           gap={4}
           h="100%"
         >
-          {/* First Box: Takes 4 columns on large, 3 on medium, full width on small */}
           <GridItem
             colSpan={{ base: 12, md: 7, lg: 4 }}
             display="flex"
@@ -155,7 +154,6 @@ const Sidebar = () => {
             <Dashboard />
           </GridItem>
 
-          {/* Second Box: Takes 5 columns on large, 3 on medium, full width on small */}
           <GridItem
             colSpan={{ base: 12, md: 5, lg: 3 }}
             display="flex"
@@ -164,7 +162,6 @@ const Sidebar = () => {
             <Survey />
           </GridItem>
 
-          {/* Third Box: Takes 2 columns on large, 1 on medium, full width on small */}
           <GridItem
             colSpan={{ base: 12, md: 7, lg: 3 }}
             display="flex"
@@ -173,7 +170,6 @@ const Sidebar = () => {
             <NoOfDays />
           </GridItem>
 
-          {/* Fourth Box: Takes 1 column on large, 1 on medium, full width on small */}
           <GridItem
             colSpan={{ base: 12, md: 5, lg: 2 }}
             display="flex"
@@ -183,11 +179,6 @@ const Sidebar = () => {
           </GridItem>
         </Grid>
       </VStack>
-
-
-
-
-
     );
   }
 
@@ -196,7 +187,7 @@ const Sidebar = () => {
   return (
     <>
       <VStack w="100%" align="stretch">
-        {/* Box 1: Takes full width */}
+        
         <Box w="100%" color="black" bg="white" display='flex' px={4} borderBottom="1px solid #ddd">
           <Box
             w={{ base: "100%", md: "30%", lg: "20%" }}
@@ -243,14 +234,13 @@ const Sidebar = () => {
             bg="gray.50" p={4} minH="100vh" color="black">
             <Grid
               templateColumns={{
-                base: "1fr",        // Single column on small devices
-                md: "repeat(12, 1fr)", // Adjust to 8 columns on medium devices
-                lg: "repeat(12, 1fr)" // Full 12-column grid on large devices
+                base: "1fr",        
+                md: "repeat(12, 1fr)", 
+                lg: "repeat(12, 1fr)"
               }}
               gap={4}
               h="100%"
             >
-              {/* First Box: Takes 4 columns on large, 3 on medium, full width on small */}
               <GridItem
                 colSpan={{ base: 12, md: 7, lg: 4 }}
                 display="flex"
@@ -259,7 +249,6 @@ const Sidebar = () => {
                 <Dashboard />
               </GridItem>
 
-              {/* Second Box: Takes 5 columns on large, 3 on medium, full width on small */}
               <GridItem
                 colSpan={{ base: 12, md: 5, lg: 3 }}
                 display="flex"
@@ -268,7 +257,6 @@ const Sidebar = () => {
                 <Survey />
               </GridItem>
 
-              {/* Third Box: Takes 2 columns on large, 1 on medium, full width on small */}
               <GridItem
                 colSpan={{ base: 12, md: 7, lg: 3 }}
                 display="flex"
@@ -277,7 +265,6 @@ const Sidebar = () => {
                 <NoOfDays />
               </GridItem>
 
-              {/* Fourth Box: Takes 1 column on large, 1 on medium, full width on small */}
               <GridItem
                 colSpan={{ base: 12, md: 5, lg: 2 }}
                 display="flex"

@@ -5,17 +5,14 @@ export const SurveyCard = ({ title, days,time }) => {
         <>
             <Flex
                 width="100%"
-                height="100px" // Set fixed height
+                height="100px" 
                 border="1px solid #E2E8F0"
                 borderRadius="md"
                 overflow="hidden"
-            //   boxShadow="sm"
             >
-                {/* Left Section */}
                 <Box
                     width='50%'
-                    height="100%" // Ensure it fills the height
-                    //   bg="blue.50"
+                    height="100%" 
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
@@ -27,16 +24,15 @@ export const SurveyCard = ({ title, days,time }) => {
 
 
 
-                {/* Right Section */}
                 <Box
                     width="50%"
-                    height="100%" // Ensure it fills the height
+                    height="100%" 
                     display="flex"
                     justifyContent="center"
                     alignItems="center"
                     bg="white"
                 >
-                    <Text fontSize="md" fontWeight="medium" color="blue.600" textAlign="center">
+                    <Text fontSize="sm" fontWeight="medium" color="blue.600" textAlign="center">
                         {days} <br />
                         {time}
                     </Text>
