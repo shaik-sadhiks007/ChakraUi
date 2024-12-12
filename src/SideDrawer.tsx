@@ -15,7 +15,7 @@ import { SidebarContent } from "./Sidebar";
 
 const SideDrawer = () => {
   return (
-    <DrawerRoot placement="end" bg="white">
+    <DrawerRoot placement="start" bg="white">
       <DrawerBackdrop bg="rgba(255, 255, 255, 0.8)" />
       <DrawerTrigger asChild>
         <Button
