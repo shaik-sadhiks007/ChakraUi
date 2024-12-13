@@ -6,8 +6,6 @@ import {
   Badge,
   useBreakpointValue,
   Flex,
-  GridItem,
-  Grid
 } from '@chakra-ui/react';
 import {
   AiOutlineDashboard,
@@ -22,11 +20,11 @@ import {
 } from 'react-icons/fi';
 import { MdPersonAddAlt1 } from "react-icons/md";
 import { BsThreeDotsVertical } from "react-icons/bs";
-import Dashboard from './Dashboard';
-import Survey from './Survey';
-import NoOfDays from './NoOfDays';
-import Estimation from './Estimation';
 import SideDrawer from './SideDrawer';
+import TableData from './TableData';
+import Laptop from './Laptop';
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+
 
 export const SidebarContent = () => (
   <VStack align="stretch" h="full">
@@ -40,12 +38,16 @@ export const SidebarContent = () => (
       </VStack>
       <VStack align="start">
         <HStack justify="space-between" w="100%" bg='blackAlpha.100' borderRadius="md">
-          <HStack p={2}>
-            <AiOutlineDashboard size="20px" color="black" />
-            <Text fontWeight="bold" color="blackAlpha.800" ml={2}>
-              Dashboard
-            </Text>
-          </HStack>
+
+          <Link to="/">
+            <HStack p={2}>
+              <AiOutlineDashboard size="20px" color="black" />
+              <Text fontWeight="bold" color="blackAlpha.800" ml={2}>
+                Dashboard
+              </Text>
+            </HStack>
+          </Link>
+
         </HStack>
         <HStack justify="space-between" w="100%" p={2}>
           <HStack>
@@ -58,12 +60,16 @@ export const SidebarContent = () => (
             115
           </Badge>
         </HStack>
-        <HStack p={2}>
-          <FiFileText size='20px' color="#5C5C5C" />
-          <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
-            Assign Task
-          </Text>
-        </HStack>
+
+        <Link to='/task-assignment'>
+          <HStack p={2}>
+            <FiFileText size='20px' color="#5C5C5C" />
+            <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
+              Task Assignment
+            </Text>
+          </HStack>
+        </Link>
+
         <HStack p={2}>
           <FiCalendar size="20px" color="#5C5C5C" />
           <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
@@ -110,84 +116,52 @@ const Sidebar = () => {
   // If mobile, show drawer
   if (isMobile) {
     return (
-      <VStack p={4}>
-        <Box
-          w="100%"
-          color="black"
-          bg="white"
-          display="flex"
-          justifyContent='space-between'
-          alignItems="center"
-          borderBottom="1px solid #ddd"
-          my={2}
-        >
-          <Box display="flex" alignItems="center">
-            <SideDrawer />
-          </Box>
-          <Text fontSize="md" fontWeight="bold">
-            Hello Sandeep
-          </Text>
-          <HStack justifyContent='space-between' alignItems='center'>
-            <Text fontSize="md" fontWeight="bold" color="blackAlpha.800">
-              Package B
+      <Router>
+        <VStack p={4}>
+          <Box
+            w="100%"
+            color="black"
+            bg="white"
+            display="flex"
+            justifyContent='space-between'
+            alignItems="center"
+            borderBottom="1px solid #ddd"
+            my={2}
+          >
+            <Box display="flex" alignItems="center">
+              <SideDrawer />
+            </Box>
+            <Text fontSize="md" fontWeight="bold">
+              Hello Sandeep
             </Text>
-            <HStack alignItems='center'>
-              <MdPersonAddAlt1 size='20px' color='black' />
-              <BsThreeDotsVertical size='20px' color='black' />
+            <HStack justifyContent='space-between' alignItems='center'>
+              <Text fontSize="md" fontWeight="bold" color="blackAlpha.800">
+                Package B
+              </Text>
+              <HStack alignItems='center'>
+                <MdPersonAddAlt1 size='20px' color='black' />
+                <BsThreeDotsVertical size='20px' color='black' />
+              </HStack>
             </HStack>
-          </HStack>
-        </Box>
-        <Grid
-          templateColumns={{
-            base: "1fr",        
-            md: "repeat(12, 1fr)",
-            lg: "repeat(12, 1fr)" 
-          }}
-          gap={4}
-          h="100%"
-        >
-          <GridItem
-            colSpan={{ base: 12, md: 7, lg: 4 }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Dashboard />
-          </GridItem>
+          </Box>
+          <Routes>
 
-          <GridItem
-            colSpan={{ base: 12, md: 5, lg: 3 }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Survey />
-          </GridItem>
+            <Route path="/" element={<Laptop />} />
 
-          <GridItem
-            colSpan={{ base: 12, md: 7, lg: 3 }}
-            display="flex"
-            justifyContent="center"
-          >
-            <NoOfDays />
-          </GridItem>
+            <Route path="/task-assignment" element={<TableData />} />
 
-          <GridItem
-            colSpan={{ base: 12, md: 5, lg: 2 }}
-            display="flex"
-            justifyContent="center"
-          >
-            <Estimation />
-          </GridItem>
-        </Grid>
-      </VStack>
+          </Routes>
+        </VStack>
+      </Router>
     );
   }
 
 
   // For larger screens, show regular sidebar
   return (
-    <>
+    <Router>
       <VStack w="100%" align="stretch">
-        
+
         <Box w="100%" color="black" bg="white" display='flex' px={4} borderBottom="1px solid #ddd">
           <Box
             w={{ base: "100%", md: "30%", lg: "20%" }}
@@ -232,53 +206,20 @@ const Sidebar = () => {
           <Box
             w={{ base: "100%", md: "70%", lg: "80%" }}
             bg="gray.50" p={4} minH="100vh" color="black">
-            <Grid
-              templateColumns={{
-                base: "1fr",        
-                md: "repeat(12, 1fr)", 
-                lg: "repeat(12, 1fr)"
-              }}
-              gap={4}
-              h="100%"
-            >
-              <GridItem
-                colSpan={{ base: 12, md: 7, lg: 4 }}
-                display="flex"
-                justifyContent="center"
-              >
-                <Dashboard />
-              </GridItem>
 
-              <GridItem
-                colSpan={{ base: 12, md: 5, lg: 3 }}
-                display="flex"
-                justifyContent="center"
-              >
-                <Survey />
-              </GridItem>
+            <Routes>
 
-              <GridItem
-                colSpan={{ base: 12, md: 7, lg: 3 }}
-                display="flex"
-                justifyContent="center"
-              >
-                <NoOfDays />
-              </GridItem>
+              <Route path="/" element={<Laptop />} />
 
-              <GridItem
-                colSpan={{ base: 12, md: 5, lg: 2 }}
-                display="flex"
-                justifyContent="center"
-              >
-                <Estimation />
-              </GridItem>
-            </Grid>
+              <Route path="/task-assignment" element={<TableData />} />
+
+            </Routes>
           </Box>
 
         </Flex>
       </VStack>
 
-    </>
+    </Router>
 
   );
 };
