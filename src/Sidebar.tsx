@@ -23,10 +23,18 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import SideDrawer from './SideDrawer';
 import TableData from './TableData';
 import Laptop from './Laptop';
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Link, useLocation } from "react-router-dom";
 
 
-export const SidebarContent = () => (
+export const SidebarContent = () => {
+
+  const location = useLocation();
+
+  const isActive = (path: string) => location.pathname === path
+
+
+ return(
+
   <VStack align="stretch" h="full">
 
     {/* Main Section */}
@@ -37,46 +45,46 @@ export const SidebarContent = () => (
         </Text>
       </VStack>
       <VStack align="start">
-        <HStack justify="space-between" w="100%" bg='blackAlpha.100' borderRadius="md">
-
+        <HStack w="100%" bg={isActive("/") ? "blackAlpha.100" : ""} borderRadius="md">
           <Link to="/">
             <HStack p={2}>
-              <AiOutlineDashboard size="20px" color="black" />
-              <Text fontWeight="bold" color="blackAlpha.800" ml={2}>
+              <AiOutlineDashboard size="20px" color={isActive("/") ? "black" : "#5C5C5C"} />
+              <Text fontWeight={isActive("/") ? "bold" : "medium"} color={isActive("/") ? "blackAlpha.800" : "blackAlpha.700"} ml={2}>
                 Dashboard
               </Text>
             </HStack>
           </Link>
-
         </HStack>
-        <HStack justify="space-between" w="100%" p={2}>
+        <HStack p={2} w="100%"  borderRadius="md">
           <HStack>
             <FiClipboard size="20px" color="#5C5C5C" />
             <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
               Task submissions
             </Text>
           </HStack>
-          <Badge colorScheme="red" borderRadius="full">
+          <Badge colorPalette="red" borderRadius="full">
             115
           </Badge>
         </HStack>
 
-        <Link to='/task-assignment'>
-          <HStack p={2}>
-            <FiFileText size='20px' color="#5C5C5C" />
-            <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
-              Task Assignment
-            </Text>
-          </HStack>
-        </Link>
+        <HStack w="100%" bg={isActive("/task-assignment") ? "blackAlpha.100" : ""}  borderRadius="md">
+          <Link to="/task-assignment">
+            <HStack p={2}>
+              <FiFileText size='20px' color={isActive("/task-assignment") ? "black" : "#5C5C5C"} />
+              <Text fontWeight={isActive("/task-assignment") ? "bold" : "medium"} color={isActive("/task-assignment") ? "blackAlpha.800" : "blackAlpha.700"} ml={2}>
+                Task Assignment
+              </Text>
+            </HStack>
+          </Link>
+        </HStack>
 
-        <HStack p={2}>
+        <HStack p={2} w="100%"  borderRadius="md">
           <FiCalendar size="20px" color="#5C5C5C" />
           <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
             Setup Files
           </Text>
         </HStack>
-        <HStack p={2}>
+        <HStack p={2} w="100%"  borderRadius="md">
           <FiBarChart2 size="20px" color="#5C5C5C" />
           <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
             ABD
@@ -93,13 +101,13 @@ export const SidebarContent = () => (
         </Text>
       </VStack>
       <VStack align="start">
-        <HStack p={2}>
+        <HStack p={2} w="100%"  borderRadius="md">
           <AiOutlineBell size="20px" color="#5C5C5C" />
           <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
             Notification
           </Text>
         </HStack>
-        <HStack p={2}>
+        <HStack p={2} w="100%"  borderRadius="md">
           <AiOutlineSetting size="20px" color="#5C5C5C" />
           <Text fontWeight="medium" color="blackAlpha.700" ml={2}>
             Settings
@@ -108,7 +116,7 @@ export const SidebarContent = () => (
       </VStack>
     </Box>
   </VStack>
-);
+) };
 
 const Sidebar = () => {
   const isMobile = useBreakpointValue({ base: true, md: false });
